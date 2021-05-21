@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"kennyfong19931.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="由於見到九巴終於肯公開 ETA 條 API, 所以重新寫過條 Siri shortcut。 呢個 post 會寫番 Siri shortcut 入面啲功能係點樣做出嚟。 下載 巴士到站時間預報 Shortcut">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Siri Shortcut 筆記">
+<meta property="og:url" content="http://kennyfong19931.github.io/2021/05/21/siri-shortcut-hk-bus-eta/">
+<meta property="og:site_name" content="Kenny&#39;s Note">
+<meta property="og:description" content="由於見到九巴終於肯公開 ETA 條 API, 所以重新寫過條 Siri shortcut。 呢個 post 會寫番 Siri shortcut 入面啲功能係點樣做出嚟。 下載 巴士到站時間預報 Shortcut">
+<meta property="og:locale" content="zh_HK">
+<meta property="og:image" content="https://github.com/kennyfong19931/siri-shortcut-hk-bus-eta/raw/main/image/group_query.gif">
+<meta property="og:image" content="http://kennyfong19931.github.io/images/siri_shortcut_vcard.jpg">
+<meta property="og:image" content="http://kennyfong19931.github.io/images/siri_shortcut_js.jpg">
+<meta property="article:published_time" content="2021-05-21T18:49:39.000Z">
+<meta property="article:modified_time" content="2021-05-21T13:20:42.893Z">
+<meta property="article:author" content="Kenny Fong">
+<meta property="article:tag" content="siri-shortcut">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://github.com/kennyfong19931/siri-shortcut-hk-bus-eta/raw/main/image/group_query.gif">
+
+<link rel="canonical" href="http://kennyfong19931.github.io/2021/05/21/siri-shortcut-hk-bus-eta/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-HK'
+  };
+</script>
+
+  <title>Siri Shortcut 筆記 | Kenny's Note</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-52412001-2"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-52412001-2');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Kenny's Note</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-HK">
+    <link itemprop="mainEntityOfPage" href="http://kennyfong19931.github.io/2021/05/21/siri-shortcut-hk-bus-eta/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Kenny Fong">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kenny's Note">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Siri Shortcut 筆記
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+              
+
+              <time title="創建時間：2021-05-21 18:49:39 / 修改時間：13:20:42" itemprop="dateCreated datePublished" datetime="2021-05-21T18:49:39+00:00">2021-05-21</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%A7%91%E6%8A%80/" itemprop="url" rel="index"><span itemprop="name">科技</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>由於見到九巴終於肯公開 ETA 條 API, 所以重新寫過條 Siri shortcut。</p>
+<p>呢個 post 會寫番 Siri shortcut 入面啲功能係點樣做出嚟。</p>
+<p>下載 <a href="https://github.com/kennyfong19931/siri-shortcut-hk-bus-eta" target="_blank" rel="noopener">巴士到站時間預報</a> Shortcut</p>
+<p><img src="https://github.com/kennyfong19931/siri-shortcut-hk-bus-eta/raw/main/image/group_query.gif" alt="巴士到站時間預報"></p>
+<a id="more"></a>
+
+<h2 id="Menu"><a href="#Menu" class="headerlink" title="Menu"></a>Menu</h2><p>個有圖嘅 menu 係用 <a href="https://zh.wikipedia.org/wiki/VCard" target="_blank" rel="noopener">vCard</a> 做出嚟。</p>
+<p>vCard 係電子卡片嘅標準，格式如下</p>
+<p><code>N</code> 係打名，<code>ORG</code> 打細字，<code>PHOTO</code> 放圖，<code>NOTE</code> 可以放唔 show 出嚟嘅 data</p>
+<p>圖可以用 base64 encode，iOS 13 可以出到透明底，但係iOS 14 唔得🤦會出白色底。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">BEGIN:VCARD</span><br><span class="line">VERSION:3.0</span><br><span class="line">N;CHARSET&#x3D;utf-8:;設定;;;</span><br><span class="line">ORG;CHARSET&#x3D;utf-8:;</span><br><span class="line">PHOTO;ENCODING&#x3D;b:&lt;base64 string&gt;</span><br><span class="line">NOTE;CHARSET&#x3D;utf-8:</span><br><span class="line">END:VCARD</span><br></pre></td></tr></table></figure>
+
+<p>只要將砌好嘅字改做 <code>*.vcf</code> 就用得</p>
+<p><img src="/images/siri_shortcut_vcard.jpg" alt="使用 vCard"></p>
+<h2 id="行-JavaScript"><a href="#行-JavaScript" class="headerlink" title="行 JavaScript"></a>行 JavaScript</h2><p>由於 Siri shortcut 入面行 1000 個嘅 for loop 太慢 (無記嘅話，行咗成廿秒)，於是用 JavaScript 行，將 JavaScript print 出嚟嘅字放落<code>文字</code>入面用。</p>
+<p><img src="/images/siri_shortcut_js.jpg" alt="使用 JavaScript"></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta http-equiv=<span class="string">"Content-Type"</span> content=<span class="string">"text/html; charset=UTF-8"</span> /&gt;</span><br><span class="line">&lt;<span class="regexp">/head&gt;</span></span><br><span class="line"><span class="regexp">&lt;body&gt;</span></span><br><span class="line"><span class="regexp">&lt;script type="text/</span>javascript<span class="string">"&gt;</span></span><br><span class="line"><span class="string">var result = [];</span></span><br><span class="line"><span class="string">var json = &lt;input&gt;;</span></span><br><span class="line"><span class="string">var list = json.data;</span></span><br><span class="line"><span class="string">for(var i = 0; i &lt; list.length; i++) &#123;</span></span><br><span class="line"><span class="string">var row = list[i];</span></span><br><span class="line"><span class="string">if(row.route == "</span>route<span class="string">")&#123;</span></span><br><span class="line"><span class="string">result.push('&#123;"</span>bound<span class="string">":"</span><span class="string">'+(row.bound == "I" ? "inbound" : "outbound")+'</span><span class="string">","</span>dir<span class="string">":"</span><span class="string">'+row.bound+'</span><span class="string">","</span>service_type<span class="string">":"</span><span class="string">'+row.service_type+'</span><span class="string">","</span>orig<span class="string">":"</span><span class="string">'+row.orig_tc+'</span><span class="string">","</span>dest<span class="string">":"</span><span class="string">'+row.dest_tc+'</span><span class="string">"&#125;');</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">document.body.innerHTML = result.join('&lt;br/&gt;');</span></span><br><span class="line"><span class="string">&lt;/script&gt;</span></span><br><span class="line"><span class="string">&lt;/body&gt;</span></span><br><span class="line"><span class="string">&lt;/html&gt;</span></span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/siri-shortcut/" rel="tag"># siri-shortcut</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/05/24/source_modding/" rel="prev" title="Source 引擎 SDK 筆記">
+      <i class="fa fa-chevron-left"></i> Source 引擎 SDK 筆記
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概覽
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Menu"><span class="nav-number">1.</span> <span class="nav-text">Menu</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#行-JavaScript"><span class="nav-number">2.</span> <span class="nav-text">行 JavaScript</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Kenny Fong"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Kenny Fong</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/kennyfong19931" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;kennyfong19931" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://youtube.com/kennyfong031" title="YouTube → https:&#x2F;&#x2F;youtube.com&#x2F;kennyfong031" rel="noopener" target="_blank"><i class="fab fa-youtube fa-fw"></i>YouTube</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Kenny Fong</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 強力驅動
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

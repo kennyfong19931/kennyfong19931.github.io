@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"kennyfong19931.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="呢幾年有唔少公司出過 Android 盒，有 D 已經無任何 support，好似我手上呢隻香港寬頻送嘅樂視盒子，樂視直頭清咗盤，要自己另外裝 APP 先睇到片。 由於樂視個 rom 本身係俾用家自己裝 APP，又有個 USB Type-A 頭，想改裝做 NAS 可以話係無難度。 今次改裝嘅核心係一個叫 Servers Ultimate 嘅 APP，任何 Android 裝置都可以用佢變成 ser">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android 盒自製 NAS">
+<meta property="og:url" content="http://kennyfong19931.github.io/2020/04/12/android_box_nas/">
+<meta property="og:site_name" content="Kenny&#39;s Note">
+<meta property="og:description" content="呢幾年有唔少公司出過 Android 盒，有 D 已經無任何 support，好似我手上呢隻香港寬頻送嘅樂視盒子，樂視直頭清咗盤，要自己另外裝 APP 先睇到片。 由於樂視個 rom 本身係俾用家自己裝 APP，又有個 USB Type-A 頭，想改裝做 NAS 可以話係無難度。 今次改裝嘅核心係一個叫 Servers Ultimate 嘅 APP，任何 Android 裝置都可以用佢變成 ser">
+<meta property="og:locale" content="zh_HK">
+<meta property="og:image" content="http://kennyfong19931.github.io/images/servers_ultimate.png">
+<meta property="og:image" content="http://kennyfong19931.github.io/images/servers_ultimate_1.jpg">
+<meta property="og:image" content="http://kennyfong19931.github.io/images/servers_ultimate_2.jpg">
+<meta property="og:image" content="http://kennyfong19931.github.io/images/servers_ultimate_3.jpg">
+<meta property="article:published_time" content="2020-04-12T13:57:39.000Z">
+<meta property="article:modified_time" content="2021-05-21T13:20:42.893Z">
+<meta property="article:author" content="Kenny Fong">
+<meta property="article:tag" content="Android">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://kennyfong19931.github.io/images/servers_ultimate.png">
+
+<link rel="canonical" href="http://kennyfong19931.github.io/2020/04/12/android_box_nas/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-HK'
+  };
+</script>
+
+  <title>Android 盒自製 NAS | Kenny's Note</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-52412001-2"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-52412001-2');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Kenny's Note</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>標籤</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分類</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>歸檔</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-HK">
+    <link itemprop="mainEntityOfPage" href="http://kennyfong19931.github.io/2020/04/12/android_box_nas/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Kenny Fong">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kenny's Note">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Android 盒自製 NAS
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2020-04-12 13:57:39" itemprop="dateCreated datePublished" datetime="2020-04-12T13:57:39+00:00">2020-04-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2021-05-21 13:20:42" itemprop="dateModified" datetime="2021-05-21T13:20:42+00:00">2021-05-21</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分類於</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android-%E7%9B%92/" itemprop="url" rel="index"><span itemprop="name">Android 盒</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>呢幾年有唔少公司出過 Android 盒，有 D 已經無任何 support，好似我手上呢隻香港寬頻送嘅樂視盒子，樂視直頭清咗盤，要自己另外裝 APP 先睇到片。</p>
+<p>由於樂視個 rom 本身係俾用家自己裝 APP，又有個 USB Type-A 頭，想改裝做 NAS 可以話係無難度。</p>
+<p>今次改裝嘅核心係一個叫 Servers Ultimate 嘅 APP，任何 Android 裝置都可以用佢變成 server。 </p>
+<p>由於今次係將個 Android 盒廢物利用，所以未必可以好似而家市面上買得到嘅 NAS 有咁多功能。例如 RAID，虛擬機呢類功能就未必做到啦。</p>
+<a id="more"></a>
+
+<h2 id="Servers-Ultimate-介紹"><a href="#Servers-Ultimate-介紹" class="headerlink" title="Servers Ultimate 介紹"></a>Servers Ultimate 介紹</h2><blockquote>
+<p><a href="https://forum.xda-developers.com/showthread.php?t=1829334" target="_blank" rel="noopener">XDA 原帖</a><br><a href="https://play.google.com/store/apps/details?id=com.icecoldapps.serversultimate" target="_blank" rel="noopener">Google Play (免費版)</a>  <a href="https://play.google.com/store/apps/details?id=com.icecoldapps.serversultimate" target="_blank" rel="noopener">Google Play (付費版)</a></p>
+</blockquote>
+<img src="/images/servers_ultimate.png" title="Servers Ultimate Logo" style="margin:10px; float:right; width:120px;">
+
+<p>Servers Ultimate 支持 Android 4.1 以上嘅裝置，包括 70 款以上服務可以用。只要裝好主程式 + Service Pack 就可以開到想用嘅服務。免費版同付費版嘅唯一分別係免費版只可以同時開3個Service，如何要同時用超過3個 Service 嘅就要用付費版。主程式入面無包哂所有 Service，有 D Service要裝埋 Service Pack 先用到 (免費)。詳情可以睇下面條 list。</p>
+<h3 id="主程式"><a href="#主程式" class="headerlink" title="主程式"></a>主程式</h3><ul>
+<li>DHCP Server</li>
+<li>DHCP Proxy Server</li>
+<li>DHCP Relay Server</li>
+<li>DNS Server</li>
+<li>DNSMasq Server</li>
+<li>Dynamic DNS Updater: DDNS services ChangeIP, DNSdynamic, DNSexit, DNSMadeEasy, DNS-O-Matic, DNSPark, DtDNS, DynDNS, easyDNS, eNom, Namecheap, No-IP, ZoneEdit, etc</li>
+<li>Flash Policy Server</li>
+<li>FTP Proxy Server</li>
+<li>FTP Server</li>
+<li>FTP Root Server</li>
+<li>FTPES Server</li>
+<li>IRC Server</li>
+<li>Multicast DNS Server (Bonjour)</li>
+<li>Port Forwarder</li>
+<li>Proxy Server</li>
+<li>PXE Server (Network Boot)</li>
+<li>Remote Control App Server</li>
+<li>Server Monitor</li>
+<li>SFTP Server</li>
+<li>SMS Gateway</li>
+<li>SOCKS Server</li>
+<li>Stomp Server</li>
+<li>Syslog Server</li>
+<li>Test Server: Echo, Discard, CHARGEN, QOTD</li>
+<li>TFTP Server</li>
+<li>Time Server</li>
+<li>Trigger Server</li>
+<li>UPnP Port Mapper</li>
+<li>Wake On LAN client (WOL)</li>
+<li>Web Server</li>
+<li>X11 Server</li>
+</ul>
+<h3 id="Service-Pack-A"><a href="#Service-Pack-A" class="headerlink" title="Service Pack A"></a><a href="https://play.google.com/store/apps/details?id=com.icecoldapps.serversultimate.packa" target="_blank" rel="noopener">Service Pack A</a></h3><ul>
+<li>CVS Server</li>
+<li>UPnP Server</li>
+<li>UPnP Native Server</li>
+<li>Email Server: POP3, SMTP</li>
+<li>Rsync Server</li>
+<li>Unison Server</li>
+<li>VNC Server</li>
+<li>VPN Server</li>
+</ul>
+<h3 id="Service-Pack-B"><a href="#Service-Pack-B" class="headerlink" title="Service Pack B"></a><a href="https://play.google.com/store/apps/details?id=com.icecoldapps.serversultimate.packb" target="_blank" rel="noopener">Service Pack B</a></h3><ul>
+<li>Direct Connect Hub</li>
+<li>eDonkey Server</li>
+<li>Gopher Server</li>
+<li>HTTP Proxy Server</li>
+<li>HTTP Snoop Server</li>
+<li>ICAP Server</li>
+<li>Icecast Server</li>
+<li>iSCSI Server</li>
+<li>Load Balancer Server</li>
+<li>LPD Server (Printer Server)</li>
+<li>Memcached Server</li>
+<li>MQTT Server</li>
+<li>Napster Server</li>
+<li>NFS Server</li>
+<li>NZB Downloader Client</li>
+<li>RTMP Server</li>
+<li>RTMP Proxy Server</li>
+<li>SMB / CIFS Server (Samba)</li>
+<li>SMB Native Server</li>
+<li>SMPP Server</li>
+<li>Styx Server</li>
+<li>Torrent Downloader Client</li>
+<li>Torrent Tracker Server</li>
+<li>WebDAV Server</li>
+<li>WebSocket Server</li>
+</ul>
+<h3 id="Service-Pack-C"><a href="#Service-Pack-C" class="headerlink" title="Service Pack C"></a><a href="https://play.google.com/store/apps/details?id=com.icecoldapps.serversultimate.packc" target="_blank" rel="noopener">Service Pack C</a></h3><ul>
+<li>MySQL Server</li>
+<li>PHP Server</li>
+<li>Lighttpd Server</li>
+<li>Caddy Server</li>
+<li>Nginx Server</li>
+</ul>
+<h3 id="Service-Pack-D"><a href="#Service-Pack-D" class="headerlink" title="Service Pack D"></a><a href="https://play.google.com/store/apps/details?id=com.icecoldapps.serversultimate.packd" target="_blank" rel="noopener">Service Pack D</a></h3><ul>
+<li>IRC Bot</li>
+<li>MongoDB Server</li>
+<li>SIP Server</li>
+<li>USB/IP Server</li>
+</ul>
+<h3 id="Service-Pack-E"><a href="#Service-Pack-E" class="headerlink" title="Service Pack E"></a><a href="https://play.google.com/store/apps/details?id=com.icecoldapps.serversultimate.packe" target="_blank" rel="noopener">Service Pack E</a></h3><ul>
+<li>Git Server</li>
+<li>NTP Server</li>
+<li>SSH Server (including SFTP / SCP support)</li>
+<li>Telnet Server</li>
+<li>Telnet Native Server</li>
+<li>XMPP Server / Jabber Server</li>
+</ul>
+<h3 id="Service-Pack-F"><a href="#Service-Pack-F" class="headerlink" title="Service Pack F"></a><a href="https://play.google.com/store/apps/details?id=com.icecoldapps.serversultimate.packf" target="_blank" rel="noopener">Service Pack F</a></h3><ul>
+<li>Node.js Server</li>
+</ul>
+<h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><p>打開 APP 會見到呢版，可以直接喺 Server list 揀你想要嘅 server 之後 Start 就得<br><img src="/images/servers_ultimate_1.jpg" alt=""></p>
+<p>Start 過嘅 server 可以喺 Servers 睇到<br><img src="/images/servers_ultimate_2.jpg" alt=""></p>
+<p>Click 落去可以有更詳細嘅設定，每款 Servers 都有唔同嘅設定，我就唔逐個 list 出嚟啦<br><img src="/images/servers_ultimate_3.jpg" alt=""></p>
+<h2 id="NAS-Service"><a href="#NAS-Service" class="headerlink" title="NAS Service"></a>NAS Service</h2><p>一般家用 NAS 最常用嘅功能都係喺唔同嘅裝置 (電腦 / 電話 / 平板) 上都睇到自己嘅文件 / 音樂 / 影片，只要用 Android 盒開番對應嘅 Service 就可以，將 Server 嘅 root path set 做以下嘅位就得。</p>
+<blockquote>
+<p>內置儲存位置 <code>/storage/emulated/legacy</code><br>外置儲存位置 (USB) <code>/storage/external_storage/sda1</code></p>
+</blockquote>
+<ul>
+<li>檔案傳輸 - iSCSI/NFS/WebDAV/SMB/FTP/SFTP</li>
+<li>影音 - NFS/WebDAV/DLNA/UPnP</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Android/" rel="tag"># Android</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/04/08/hexo/" rel="prev" title="Hexo + GitHub Actions 自動部署">
+      <i class="fa fa-chevron-left"></i> Hexo + GitHub Actions 自動部署
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/04/18/android_box_aria2/" rel="next" title="Android 盒 + Aria2 自製下載機">
+      Android 盒 + Aria2 自製下載機 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概覽
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Servers-Ultimate-介紹"><span class="nav-number">1.</span> <span class="nav-text">Servers Ultimate 介紹</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#主程式"><span class="nav-number">1.1.</span> <span class="nav-text">主程式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Service-Pack-A"><span class="nav-number">1.2.</span> <span class="nav-text">Service Pack A</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Service-Pack-B"><span class="nav-number">1.3.</span> <span class="nav-text">Service Pack B</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Service-Pack-C"><span class="nav-number">1.4.</span> <span class="nav-text">Service Pack C</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Service-Pack-D"><span class="nav-number">1.5.</span> <span class="nav-text">Service Pack D</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Service-Pack-E"><span class="nav-number">1.6.</span> <span class="nav-text">Service Pack E</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Service-Pack-F"><span class="nav-number">1.7.</span> <span class="nav-text">Service Pack F</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用方法"><span class="nav-number">2.</span> <span class="nav-text">使用方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NAS-Service"><span class="nav-number">3.</span> <span class="nav-text">NAS Service</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Kenny Fong"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Kenny Fong</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分類</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">標籤</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/kennyfong19931" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;kennyfong19931" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://youtube.com/kennyfong031" title="YouTube → https:&#x2F;&#x2F;youtube.com&#x2F;kennyfong031" rel="noopener" target="_blank"><i class="fab fa-youtube fa-fw"></i>YouTube</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Kenny Fong</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 強力驅動
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
