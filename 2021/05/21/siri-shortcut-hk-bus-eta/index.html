@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.0">
+<meta name="generator" content="Hexo 6.2.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -31,7 +31,7 @@
 <meta property="og:image" content="http://kennyfong19931.github.io/images/siri_shortcut_vcard.jpg">
 <meta property="og:image" content="http://kennyfong19931.github.io/images/siri_shortcut_js.jpg">
 <meta property="article:published_time" content="2021-05-21T18:49:39.000Z">
-<meta property="article:modified_time" content="2021-05-21T13:20:42.893Z">
+<meta property="article:modified_time" content="2022-07-04T05:06:45.125Z">
 <meta property="article:author" content="Kenny Fong">
 <meta property="article:tag" content="siri-shortcut">
 <meta name="twitter:card" content="summary">
@@ -197,10 +197,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">發表於</span>
-              
 
-              <time title="創建時間：2021-05-21 18:49:39 / 修改時間：13:20:42" itemprop="dateCreated datePublished" datetime="2021-05-21T18:49:39+00:00">2021-05-21</time>
+              <time title="創建時間：2021-05-21 18:49:39" itemprop="dateCreated datePublished" datetime="2021-05-21T18:49:39+00:00">2021-05-21</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2022-07-04 05:06:45" itemprop="dateModified" datetime="2022-07-04T05:06:45+00:00">2022-07-04</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -224,21 +230,21 @@
       
         <p>由於見到九巴終於肯公開 ETA 條 API, 所以重新寫過條 Siri shortcut。</p>
 <p>呢個 post 會寫番 Siri shortcut 入面啲功能係點樣做出嚟。</p>
-<p>下載 <a href="https://github.com/kennyfong19931/siri-shortcut-hk-bus-eta" target="_blank" rel="noopener">巴士到站時間預報</a> Shortcut</p>
+<p>下載 <a target="_blank" rel="noopener" href="https://github.com/kennyfong19931/siri-shortcut-hk-bus-eta">巴士到站時間預報</a> Shortcut</p>
 <p><img src="https://github.com/kennyfong19931/siri-shortcut-hk-bus-eta/raw/main/image/group_query.gif" alt="巴士到站時間預報"></p>
-<a id="more"></a>
+<span id="more"></span>
 
-<h2 id="Menu"><a href="#Menu" class="headerlink" title="Menu"></a>Menu</h2><p>個有圖嘅 menu 係用 <a href="https://zh.wikipedia.org/wiki/VCard" target="_blank" rel="noopener">vCard</a> 做出嚟。</p>
+<h2 id="Menu"><a href="#Menu" class="headerlink" title="Menu"></a>Menu</h2><p>個有圖嘅 menu 係用 <a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/VCard">vCard</a> 做出嚟。</p>
 <p>vCard 係電子卡片嘅標準，格式如下</p>
 <p><code>N</code> 係打名，<code>ORG</code> 打細字，<code>PHOTO</code> 放圖，<code>NOTE</code> 可以放唔 show 出嚟嘅 data</p>
 <p>圖可以用 base64 encode，iOS 13 可以出到透明底，但係iOS 14 唔得🤦會出白色底。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">BEGIN:VCARD</span><br><span class="line">VERSION:3.0</span><br><span class="line">N;CHARSET&#x3D;utf-8:;設定;;;</span><br><span class="line">ORG;CHARSET&#x3D;utf-8:;</span><br><span class="line">PHOTO;ENCODING&#x3D;b:&lt;base64 string&gt;</span><br><span class="line">NOTE;CHARSET&#x3D;utf-8:</span><br><span class="line">END:VCARD</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">BEGIN:VCARD</span><br><span class="line">VERSION:3.0</span><br><span class="line">N;CHARSET=utf-8:;設定;;;</span><br><span class="line">ORG;CHARSET=utf-8:;</span><br><span class="line">PHOTO;ENCODING=b:&lt;base64 string&gt;</span><br><span class="line">NOTE;CHARSET=utf-8:</span><br><span class="line">END:VCARD</span><br></pre></td></tr></table></figure>
 
 <p>只要將砌好嘅字改做 <code>*.vcf</code> 就用得</p>
 <p><img src="/images/siri_shortcut_vcard.jpg" alt="使用 vCard"></p>
 <h2 id="行-JavaScript"><a href="#行-JavaScript" class="headerlink" title="行 JavaScript"></a>行 JavaScript</h2><p>由於 Siri shortcut 入面行 1000 個嘅 for loop 太慢 (無記嘅話，行咗成廿秒)，於是用 JavaScript 行，將 JavaScript print 出嚟嘅字放落<code>文字</code>入面用。</p>
 <p><img src="/images/siri_shortcut_js.jpg" alt="使用 JavaScript"></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta http-equiv=<span class="string">"Content-Type"</span> content=<span class="string">"text/html; charset=UTF-8"</span> /&gt;</span><br><span class="line">&lt;<span class="regexp">/head&gt;</span></span><br><span class="line"><span class="regexp">&lt;body&gt;</span></span><br><span class="line"><span class="regexp">&lt;script type="text/</span>javascript<span class="string">"&gt;</span></span><br><span class="line"><span class="string">var result = [];</span></span><br><span class="line"><span class="string">var json = &lt;input&gt;;</span></span><br><span class="line"><span class="string">var list = json.data;</span></span><br><span class="line"><span class="string">for(var i = 0; i &lt; list.length; i++) &#123;</span></span><br><span class="line"><span class="string">var row = list[i];</span></span><br><span class="line"><span class="string">if(row.route == "</span>route<span class="string">")&#123;</span></span><br><span class="line"><span class="string">result.push('&#123;"</span>bound<span class="string">":"</span><span class="string">'+(row.bound == "I" ? "inbound" : "outbound")+'</span><span class="string">","</span>dir<span class="string">":"</span><span class="string">'+row.bound+'</span><span class="string">","</span>service_type<span class="string">":"</span><span class="string">'+row.service_type+'</span><span class="string">","</span>orig<span class="string">":"</span><span class="string">'+row.orig_tc+'</span><span class="string">","</span>dest<span class="string">":"</span><span class="string">'+row.dest_tc+'</span><span class="string">"&#125;');</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">document.body.innerHTML = result.join('&lt;br/&gt;');</span></span><br><span class="line"><span class="string">&lt;/script&gt;</span></span><br><span class="line"><span class="string">&lt;/body&gt;</span></span><br><span class="line"><span class="string">&lt;/html&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;Content-Type&quot;</span> <span class="attr">content</span>=<span class="string">&quot;text/html; charset=UTF-8&quot;</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="language-javascript"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"><span class="keyword">var</span> result = [];</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"><span class="keyword">var</span> json = &lt;input&gt;;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"><span class="keyword">var</span> list = json.<span class="property">data</span>;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; list.<span class="property">length</span>; i++) &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"><span class="keyword">var</span> row = list[i];</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"><span class="keyword">if</span>(row.<span class="property">route</span> == <span class="string">&quot;route&quot;</span>)&#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">result.<span class="title function_">push</span>(<span class="string">&#x27;&#123;&quot;bound&quot;:&quot;&#x27;</span>+(row.<span class="property">bound</span> == <span class="string">&quot;I&quot;</span> ? <span class="string">&quot;inbound&quot;</span> : <span class="string">&quot;outbound&quot;</span>)+<span class="string">&#x27;&quot;,&quot;dir&quot;:&quot;&#x27;</span>+row.<span class="property">bound</span>+<span class="string">&#x27;&quot;,&quot;service_type&quot;:&quot;&#x27;</span>+row.<span class="property">service_type</span>+<span class="string">&#x27;&quot;,&quot;orig&quot;:&quot;&#x27;</span>+row.<span class="property">orig_tc</span>+<span class="string">&#x27;&quot;,&quot;dest&quot;:&quot;&#x27;</span>+row.<span class="property">dest_tc</span>+<span class="string">&#x27;&quot;&#125;&#x27;</span>);</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">&#125;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">&#125;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"><span class="variable language_">document</span>.<span class="property">body</span>.<span class="property">innerHTML</span> = result.<span class="title function_">join</span>(<span class="string">&#x27;&lt;br/&gt;&#x27;</span>);</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
 
     </div>
 
@@ -260,7 +266,10 @@
     <a href="/2020/05/24/source_modding/" rel="prev" title="Source 引擎 SDK 筆記">
       <i class="fa fa-chevron-left"></i> Source 引擎 SDK 筆記
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2022/06/28/siri-shortcut-hk-bus-eta-2/" rel="next" title="Cloudflare Pages 筆記">
+      Cloudflare Pages 筆記 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -319,7 +328,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Menu"><span class="nav-number">1.</span> <span class="nav-text">Menu</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#行-JavaScript"><span class="nav-number">2.</span> <span class="nav-text">行 JavaScript</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Menu"><span class="nav-number">1.</span> <span class="nav-text">Menu</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A1%8C-JavaScript"><span class="nav-number">2.</span> <span class="nav-text">行 JavaScript</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -335,7 +344,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-count">8</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
@@ -348,7 +357,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>
@@ -356,9 +365,6 @@
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
         <a href="https://github.com/kennyfong19931" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;kennyfong19931" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://youtube.com/kennyfong031" title="YouTube → https:&#x2F;&#x2F;youtube.com&#x2F;kennyfong031" rel="noopener" target="_blank"><i class="fab fa-youtube fa-fw"></i>YouTube</a>
       </span>
   </div>
 
@@ -383,7 +389,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

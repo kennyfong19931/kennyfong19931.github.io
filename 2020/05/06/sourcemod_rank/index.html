@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.0">
+<meta name="generator" content="Hexo 6.2.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -28,7 +28,7 @@
 <meta property="og:description" content="Left 4 Dead 2 係 Valve 出嘅四人合作游戲，透過 Sourcemod，可以輕鬆將遊戲機制更改，獲得全新嘅遊戲體驗。 Left 4 Dead 有個叫 Custom Player Stats 嘅插件可以記錄玩家嘅紀錄，比官方提供嘅更加詳細。跟住呢篇文會講吓成個 setup 嘅步驟。">
 <meta property="og:locale" content="zh_HK">
 <meta property="article:published_time" content="2020-05-06T00:57:39.000Z">
-<meta property="article:modified_time" content="2021-05-21T13:20:42.893Z">
+<meta property="article:modified_time" content="2022-07-04T05:06:45.125Z">
 <meta property="article:author" content="Kenny Fong">
 <meta property="article:tag" content="Left 4 Dead 2">
 <meta property="article:tag" content="Sourcemod">
@@ -202,7 +202,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2021-05-21 13:20:42" itemprop="dateModified" datetime="2021-05-21T13:20:42+00:00">2021-05-21</time>
+                <time title="修改時間：2022-07-04 05:06:45" itemprop="dateModified" datetime="2022-07-04T05:06:45+00:00">2022-07-04</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -226,25 +226,25 @@
 
       
         <p>Left 4 Dead 2 係 Valve 出嘅四人合作游戲，透過 Sourcemod，可以輕鬆將遊戲機制更改，獲得全新嘅遊戲體驗。</p>
-<p>Left 4 Dead 有個叫 <a href="https://forums.alliedmods.net/showthread.php?p=2678290#post2678290" target="_blank" rel="noopener">Custom Player Stats</a> 嘅插件可以記錄玩家嘅紀錄，比<a href="https://steamcommunity.com/my/stats/L4D2/compare" target="_blank" rel="noopener">官方提供</a>嘅更加詳細。跟住呢篇文會講吓成個 setup 嘅步驟。</p>
-<a id="more"></a>
+<p>Left 4 Dead 有個叫 <a target="_blank" rel="noopener" href="https://forums.alliedmods.net/showthread.php?p=2678290#post2678290">Custom Player Stats</a> 嘅插件可以記錄玩家嘅紀錄，比<a target="_blank" rel="noopener" href="https://steamcommunity.com/my/stats/L4D2/compare">官方提供</a>嘅更加詳細。跟住呢篇文會講吓成個 setup 嘅步驟。</p>
+<span id="more"></span>
 
 <h2 id="安裝-sourcemod"><a href="#安裝-sourcemod" class="headerlink" title="安裝 sourcemod"></a>安裝 sourcemod</h2><p>Sourcemod 安裝教學 Google 一吓就會搵到一堆，呢度就唔詳細寫。</p>
 <h3 id="步驟"><a href="#步驟" class="headerlink" title="步驟:"></a>步驟:</h3><ol>
-<li>下載 <a href="https://www.sourcemm.net/downloads.php?branch=stable" target="_blank" rel="noopener">Metamod:Source</a></li>
-<li>下載 <a href="https://www.sourcemod.net/downloads.php?branch=stable" target="_blank" rel="noopener">Sourcemod</a></li>
+<li>下載 <a target="_blank" rel="noopener" href="https://www.sourcemm.net/downloads.php?branch=stable">Metamod:Source</a></li>
+<li>下載 <a target="_blank" rel="noopener" href="https://www.sourcemod.net/downloads.php?branch=stable">Sourcemod</a></li>
 <li>將 D file 解壓去 <code>\left4dead2</code>，addons 放去 <code>\left4dead2\addons</code>，cfg 放去 <code>\left4dead2\cfg</code></li>
 <li>開 server, console 打 <code>meta version</code> <code>sm version</code> 安裝成功會見到你岩岩 download 嘅 version</li>
-<li>之後可以 set admin，打開 <code>\left4dead2\addons\sourcemod\configs\admins_simple.ini</code>，喺最底加入<code>&quot;你嘅 Steam ID (格式係 STEAM_0:0:12345678)&quot;        &quot;99:z&quot;</code>。更詳細嘅設定可以去<a href="https://wiki.alliedmods.net/Adding_Admins_(SourceMod)" target="_blank" rel="noopener">官方 WIKI</a> 睇</li>
+<li>之後可以 set admin，打開 <code>\left4dead2\addons\sourcemod\configs\admins_simple.ini</code>，喺最底加入<code>&quot;你嘅 Steam ID (格式係 STEAM_0:0:12345678)&quot;        &quot;99:z&quot;</code>。更詳細嘅設定可以去<a target="_blank" rel="noopener" href="https://wiki.alliedmods.net/Adding_Admins_(SourceMod)">官方 WIKI</a> 睇</li>
 </ol>
-<h2 id="安裝排名系統"><a href="#安裝排名系統" class="headerlink" title="安裝排名系統"></a>安裝排名系統</h2><h3 id="Part-1-sourcemod"><a href="#Part-1-sourcemod" class="headerlink" title="Part 1: sourcemod"></a>Part 1: sourcemod</h3><p>打開 <a href="https://forums.alliedmods.net/showthread.php?p=2678290#post2678290" target="_blank" rel="noopener">Custom Player Stats</a>，down 哂入面嘅 attachment，再放去相應位置。</p>
+<h2 id="安裝排名系統"><a href="#安裝排名系統" class="headerlink" title="安裝排名系統"></a>安裝排名系統</h2><h3 id="Part-1-sourcemod"><a href="#Part-1-sourcemod" class="headerlink" title="Part 1: sourcemod"></a>Part 1: sourcemod</h3><p>打開 <a target="_blank" rel="noopener" href="https://forums.alliedmods.net/showthread.php?p=2678290#post2678290">Custom Player Stats</a>，down 哂入面嘅 attachment，再放去相應位置。</p>
 <ul>
 <li><code>l4d_stats.smx</code> -&gt; <code>\left4dead2\addons\sourcemod\plugins</code></li>
 <li><code>l4d_stats.cfg</code> -&gt; <code>\left4dead2\cfg\sourcemod</code></li>
 </ul>
 <h3 id="Part-2-資料庫"><a href="#Part-2-資料庫" class="headerlink" title="Part 2: 資料庫"></a>Part 2: 資料庫</h3><p>個插件係用 MySQL 資料庫，行 <code>sql_dump.zip</code> 入面嘅 DB script 就可以起到需要嘅 table。</p>
 <p>之後打開 <code>\left4dead2\addons\sourcemod\configs\databases.cfg</code>，加番 MySQL 資料庫嘅連接方法落 sourcemod</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&quot;l4dstats&quot;</span><br><span class="line">&#123;</span><br><span class="line">	&quot;driver&quot;			&quot;mysql&quot;</span><br><span class="line">	&quot;host&quot;				&quot;127.0.0.1&quot;</span><br><span class="line">	&quot;database&quot;			&quot;MYSQL DB&quot;</span><br><span class="line">	&quot;user&quot;				&quot;MYSQL USER&quot;</span><br><span class="line">	&quot;pass&quot;				&quot;MYSQL PASSWORD&quot;</span><br><span class="line">	&#x2F;&#x2F;&quot;timeout&quot;			&quot;0&quot;</span><br><span class="line">	&quot;port&quot;			    &quot;3306&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&quot;l4dstats&quot;</span><br><span class="line">&#123;</span><br><span class="line">	&quot;driver&quot;			&quot;mysql&quot;</span><br><span class="line">	&quot;host&quot;				&quot;127.0.0.1&quot;</span><br><span class="line">	&quot;database&quot;			&quot;MYSQL DB&quot;</span><br><span class="line">	&quot;user&quot;				&quot;MYSQL USER&quot;</span><br><span class="line">	&quot;pass&quot;				&quot;MYSQL PASSWORD&quot;</span><br><span class="line">	//&quot;timeout&quot;			&quot;0&quot;</span><br><span class="line">	&quot;port&quot;			    &quot;3306&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h3 id="Part-3-網頁"><a href="#Part-3-網頁" class="headerlink" title="Part 3: 網頁"></a>Part 3: 網頁</h3><p>作者有提供個網頁俾你好方便咁睇到排名系統即時資料。</p>
 <h4 id="安裝步驟"><a href="#安裝步驟" class="headerlink" title="安裝步驟:"></a>安裝步驟:</h4><ol>
@@ -340,7 +340,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安裝-sourcemod"><span class="nav-number">1.</span> <span class="nav-text">安裝 sourcemod</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#步驟"><span class="nav-number">1.1.</span> <span class="nav-text">步驟:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安裝排名系統"><span class="nav-number">2.</span> <span class="nav-text">安裝排名系統</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Part-1-sourcemod"><span class="nav-number">2.1.</span> <span class="nav-text">Part 1: sourcemod</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Part-2-資料庫"><span class="nav-number">2.2.</span> <span class="nav-text">Part 2: 資料庫</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Part-3-網頁"><span class="nav-number">2.3.</span> <span class="nav-text">Part 3: 網頁</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#安裝步驟"><span class="nav-number">2.3.1.</span> <span class="nav-text">安裝步驟:</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%9D-sourcemod"><span class="nav-number">1.</span> <span class="nav-text">安裝 sourcemod</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A5%E9%A9%9F"><span class="nav-number">1.1.</span> <span class="nav-text">步驟:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%9D%E6%8E%92%E5%90%8D%E7%B3%BB%E7%B5%B1"><span class="nav-number">2.</span> <span class="nav-text">安裝排名系統</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Part-1-sourcemod"><span class="nav-number">2.1.</span> <span class="nav-text">Part 1: sourcemod</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Part-2-%E8%B3%87%E6%96%99%E5%BA%AB"><span class="nav-number">2.2.</span> <span class="nav-text">Part 2: 資料庫</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Part-3-%E7%B6%B2%E9%A0%81"><span class="nav-number">2.3.</span> <span class="nav-text">Part 3: 網頁</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F"><span class="nav-number">2.3.1.</span> <span class="nav-text">安裝步驟:</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -356,7 +356,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-count">8</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
@@ -369,7 +369,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">標籤</span></a>
       </div>
   </nav>
@@ -377,9 +377,6 @@
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
         <a href="https://github.com/kennyfong19931" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;kennyfong19931" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://youtube.com/kennyfong031" title="YouTube → https:&#x2F;&#x2F;youtube.com&#x2F;kennyfong031" rel="noopener" target="_blank"><i class="fab fa-youtube fa-fw"></i>YouTube</a>
       </span>
   </div>
 
@@ -404,7 +401,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
