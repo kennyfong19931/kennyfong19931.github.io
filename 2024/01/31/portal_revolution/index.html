@@ -20,29 +20,28 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"kennyfong19931.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.18.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"我們無法找到任何有關 ${query} 的搜索結果","hits_time":"${hits} 結果在 ${time} 毫秒找到","hits":"找到 ${hits} 個結果"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="Left 4 Dead 2 係 Valve 出嘅四人合作游戲，透過 Sourcemod，可以輕鬆將遊戲機制更改，獲得全新嘅遊戲體驗。 Left 4 Dead 有個叫 Custom Player Stats 嘅插件可以記錄玩家嘅紀錄，比官方提供嘅更加詳細。跟住呢篇文會講吓成個 setup 嘅步驟。">
+    <meta name="description" content="Portal Revolution 漢化修改版, 基於 MrHouse 在官方 Discord 中 show-your-stuff &#x2F; Simplified &#x2F; Traditional Chinese Localization Translator | 簡&#x2F;繁中文字地化翻譯 的檔案修改而成。只是把“終局之戰”中倒計時螢幕的字型加粗了 安裝方法：  下載翻譯檔 把翻譯檔">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Left 4 Dead 2  排名系統設置">
-<meta property="og:url" content="http://kennyfong19931.github.io/2020/05/06/sourcemod_rank/">
+<meta property="og:title" content="Portal Revolution 漢化">
+<meta property="og:url" content="http://kennyfong19931.github.io/2024/01/31/portal_revolution/">
 <meta property="og:site_name" content="Kenny&#39;s Note">
-<meta property="og:description" content="Left 4 Dead 2 係 Valve 出嘅四人合作游戲，透過 Sourcemod，可以輕鬆將遊戲機制更改，獲得全新嘅遊戲體驗。 Left 4 Dead 有個叫 Custom Player Stats 嘅插件可以記錄玩家嘅紀錄，比官方提供嘅更加詳細。跟住呢篇文會講吓成個 setup 嘅步驟。">
+<meta property="og:description" content="Portal Revolution 漢化修改版, 基於 MrHouse 在官方 Discord 中 show-your-stuff &#x2F; Simplified &#x2F; Traditional Chinese Localization Translator | 簡&#x2F;繁中文字地化翻譯 的檔案修改而成。只是把“終局之戰”中倒計時螢幕的字型加粗了 安裝方法：  下載翻譯檔 把翻譯檔">
 <meta property="og:locale" content="zh_HK">
-<meta property="article:published_time" content="2020-05-06T00:57:39.000Z">
+<meta property="article:published_time" content="2024-01-31T19:57:42.000Z">
 <meta property="article:modified_time" content="2024-02-01T13:14:52.023Z">
 <meta property="article:author" content="Kenny Fong">
-<meta property="article:tag" content="Left 4 Dead 2">
-<meta property="article:tag" content="Sourcemod">
+<meta property="article:tag" content="Portal 2">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://kennyfong19931.github.io/2020/05/06/sourcemod_rank/">
+<link rel="canonical" href="http://kennyfong19931.github.io/2024/01/31/portal_revolution/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-HK","comments":true,"permalink":"http://kennyfong19931.github.io/2020/05/06/sourcemod_rank/","path":"2020/05/06/sourcemod_rank/","title":"Left 4 Dead 2  排名系統設置"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-HK","comments":true,"permalink":"http://kennyfong19931.github.io/2024/01/31/portal_revolution/","path":"2024/01/31/portal_revolution/","title":"Portal Revolution 漢化"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Left 4 Dead 2  排名系統設置 | Kenny's Note</title>
+<title>Portal Revolution 漢化 | Kenny's Note</title>
   
 
 
@@ -102,7 +101,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+    <div class="sidebar-inner sidebar-overview-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目錄
@@ -115,7 +114,6 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%9D-sourcemod"><span class="nav-number">1.</span> <span class="nav-text">安裝 sourcemod</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A5%E9%A9%9F"><span class="nav-number">1.1.</span> <span class="nav-text">步驟:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%9D%E6%8E%92%E5%90%8D%E7%B3%BB%E7%B5%B1"><span class="nav-number">2.</span> <span class="nav-text">安裝排名系統</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Part-1-sourcemod"><span class="nav-number">2.1.</span> <span class="nav-text">Part 1: sourcemod</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Part-2-%E8%B3%87%E6%96%99%E5%BA%AB"><span class="nav-number">2.2.</span> <span class="nav-text">Part 2: 資料庫</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Part-3-%E7%B6%B2%E9%A0%81"><span class="nav-number">2.3.</span> <span class="nav-text">Part 3: 網頁</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E8%A3%9D%E6%AD%A5%E9%A9%9F"><span class="nav-number">2.3.1.</span> <span class="nav-text">安裝步驟:</span></a></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -173,7 +171,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-HK">
-    <link itemprop="mainEntityOfPage" href="http://kennyfong19931.github.io/2020/05/06/sourcemod_rank/">
+    <link itemprop="mainEntityOfPage" href="http://kennyfong19931.github.io/2024/01/31/portal_revolution/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -186,12 +184,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="Left 4 Dead 2  排名系統設置 | Kenny's Note">
+      <meta itemprop="name" content="Portal Revolution 漢化 | Kenny's Note">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Left 4 Dead 2  排名系統設置
+          Portal Revolution 漢化
         </h1>
 
         <div class="post-meta-container">
@@ -202,7 +200,7 @@
       </span>
       <span class="post-meta-item-text">發表於</span>
 
-      <time title="創建時間：2020-05-06 00:57:39" itemprop="dateCreated datePublished" datetime="2020-05-06T00:57:39+00:00">2020-05-06</time>
+      <time title="創建時間：2024-01-31 19:57:42" itemprop="dateCreated datePublished" datetime="2024-01-31T19:57:42+00:00">2024-01-31</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -228,14 +226,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字數：</span>
-      <span>1.4k</span>
+      <span>331</span>
     </span>
     <span class="post-meta-item" title="閱讀時長">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">閱讀時長 &asymp;</span>
-      <span>3 分鍾</span>
+      <span>1 分鍾</span>
     </span>
 </div>
 
@@ -245,37 +243,14 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><p>Left 4 Dead 2 係 Valve 出嘅四人合作游戲，透過 Sourcemod，可以輕鬆將遊戲機制更改，獲得全新嘅遊戲體驗。</p>
-<p>Left 4 Dead 有個叫 <a target="_blank" rel="noopener" href="https://forums.alliedmods.net/showthread.php?p=2678290#post2678290">Custom Player Stats</a> 嘅插件可以記錄玩家嘅紀錄，比<a target="_blank" rel="noopener" href="https://steamcommunity.com/my/stats/L4D2/compare">官方提供</a>嘅更加詳細。跟住呢篇文會講吓成個 setup 嘅步驟。</p>
-<span id="more"></span>
-
-<h2 id="安裝-sourcemod"><a href="#安裝-sourcemod" class="headerlink" title="安裝 sourcemod"></a>安裝 sourcemod</h2><p>Sourcemod 安裝教學 Google 一吓就會搵到一堆，呢度就唔詳細寫。</p>
-<h3 id="步驟"><a href="#步驟" class="headerlink" title="步驟:"></a>步驟:</h3><ol>
-<li>下載 <a target="_blank" rel="noopener" href="https://www.sourcemm.net/downloads.php?branch=stable">Metamod:Source</a></li>
-<li>下載 <a target="_blank" rel="noopener" href="https://www.sourcemod.net/downloads.php?branch=stable">Sourcemod</a></li>
-<li>將 D file 解壓去 <code>\left4dead2</code>，addons 放去 <code>\left4dead2\addons</code>，cfg 放去 <code>\left4dead2\cfg</code></li>
-<li>開 server, console 打 <code>meta version</code> <code>sm version</code> 安裝成功會見到你岩岩 download 嘅 version</li>
-<li>之後可以 set admin，打開 <code>\left4dead2\addons\sourcemod\configs\admins_simple.ini</code>，喺最底加入<code>&quot;你嘅 Steam ID (格式係 STEAM_0:0:12345678)&quot;        &quot;99:z&quot;</code>。更詳細嘅設定可以去<a target="_blank" rel="noopener" href="https://wiki.alliedmods.net/Adding_Admins_(SourceMod)">官方 WIKI</a> 睇</li>
+    <div class="post-body" itemprop="articleBody"><p>Portal Revolution 漢化修改版, 基於 MrHouse 在<a target="_blank" rel="noopener" href="https://discord.gg/zrSVsM7">官方 Discord</a> 中 show-your-stuff &#x2F; <a target="_blank" rel="noopener" href="https://discord.com/channels/269915658760749066/1199978808615378984/1200361182893195305">Simplified &#x2F; Traditional Chinese Localization Translator | 簡&#x2F;繁中文字地化翻譯</a> 的檔案修改而成。<br>只是把“終局之戰”中倒計時螢幕的字型加粗了</p>
+<p>安裝方法：</p>
+<ol>
+<li>下載<a href="/files/portal_revolution_cn.zip">翻譯檔</a></li>
+<li>把翻譯檔解壓縮至遊戲目錄 <code>C:\Program Files (x86)\Steam\steamapps\common\Portal Revolution\revolution</code></li>
+<li>Steam 上選擇 Portal Revolution，右鍵，內容，在啟動選項中填入<code>-language schinese</code>或<code>-language tchinese</code></li>
 </ol>
-<h2 id="安裝排名系統"><a href="#安裝排名系統" class="headerlink" title="安裝排名系統"></a>安裝排名系統</h2><h3 id="Part-1-sourcemod"><a href="#Part-1-sourcemod" class="headerlink" title="Part 1: sourcemod"></a>Part 1: sourcemod</h3><p>打開 <a target="_blank" rel="noopener" href="https://forums.alliedmods.net/showthread.php?p=2678290#post2678290">Custom Player Stats</a>，down 哂入面嘅 attachment，再放去相應位置。</p>
-<ul>
-<li><code>l4d_stats.smx</code> -&gt; <code>\left4dead2\addons\sourcemod\plugins</code></li>
-<li><code>l4d_stats.cfg</code> -&gt; <code>\left4dead2\cfg\sourcemod</code></li>
-</ul>
-<h3 id="Part-2-資料庫"><a href="#Part-2-資料庫" class="headerlink" title="Part 2: 資料庫"></a>Part 2: 資料庫</h3><p>個插件係用 MySQL 資料庫，行 <code>sql_dump.zip</code> 入面嘅 DB script 就可以起到需要嘅 table。</p>
-<p>之後打開 <code>\left4dead2\addons\sourcemod\configs\databases.cfg</code>，加番 MySQL 資料庫嘅連接方法落 sourcemod</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&quot;l4dstats&quot;</span><br><span class="line">&#123;</span><br><span class="line">	&quot;driver&quot;			&quot;mysql&quot;</span><br><span class="line">	&quot;host&quot;				&quot;127.0.0.1&quot;</span><br><span class="line">	&quot;database&quot;			&quot;MYSQL DB&quot;</span><br><span class="line">	&quot;user&quot;				&quot;MYSQL USER&quot;</span><br><span class="line">	&quot;pass&quot;				&quot;MYSQL PASSWORD&quot;</span><br><span class="line">	//&quot;timeout&quot;			&quot;0&quot;</span><br><span class="line">	&quot;port&quot;			    &quot;3306&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="Part-3-網頁"><a href="#Part-3-網頁" class="headerlink" title="Part 3: 網頁"></a>Part 3: 網頁</h3><p>作者有提供個網頁俾你好方便咁睇到排名系統即時資料。</p>
-<h4 id="安裝步驟"><a href="#安裝步驟" class="headerlink" title="安裝步驟:"></a>安裝步驟:</h4><ol>
-<li>解壓 <code>Left_4_Dead_(2)_Player_Statistics_v1_4.zip</code> </li>
-<li>解壓 <code>Country Flags (231).zip</code></li>
-<li>更改 <code>/l4d_stats/awards/awards_cache.html</code> 權限做 777</li>
-<li>更改 <code>/l4d_stats/_source/js/cache</code> 權限做 777</li>
-<li>更改 <code>/l4d_stats/gameserver</code> 權限做 777</li>
-<li>打開 <code>/l4d_stats/_source/_config.php</code>，set 番 MySQL 資料庫嘅連接方法</li>
-</ol>
-<p>當所有野都 set 好，就會喺網頁睇到排名系統即時資料。</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/N6OCkLr26vA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
     </div>
 
@@ -285,22 +260,18 @@
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Left-4-Dead-2/" rel="tag"># Left 4 Dead 2</a>
-              <a href="/tags/Sourcemod/" rel="tag"># Sourcemod</a>
+              <a href="/tags/Portal-2/" rel="tag"># Portal 2</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2020/04/18/android_box_aria2/" rel="prev" title="Android 盒 + Aria2 自製下載機">
-                  <i class="fa fa-angle-left"></i> Android 盒 + Aria2 自製下載機
+                <a href="/2023/11/25/portal_2_tlfs/" rel="prev" title="Portal 2 - THE LONE FUTURE-STARTER 漢化">
+                  <i class="fa fa-angle-left"></i> Portal 2 - THE LONE FUTURE-STARTER 漢化
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2020/05/11/youtube_chapter/" rel="next" title="Youtube 章節功能介紹">
-                  Youtube 章節功能介紹 <i class="fa fa-angle-right"></i>
-                </a>
             </div>
           </div>
     </footer>
